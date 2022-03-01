@@ -1,15 +1,15 @@
-package com.mjvschool.atracao.app;
+package atracao.app;
 
 import java.util.Date;
 import java.util.List;
 
-import com.mjvschool.atracao.model.cadastro.Endereco;
-import com.mjvschool.atracao.model.cadastro.Pais;
-import com.mjvschool.atracao.model.cadastro.Pessoa;
-import com.mjvschool.atracao.model.cadastro.Servico;
-import com.mjvschool.atracao.model.contrato.Contrato;
-import com.mjvschool.atracao.output.GeradorArquivoCsv;
-import com.mjvschool.atracao.repository.ContratoRepository;
+import atracao.model.cadastro.Endereco;
+import atracao.model.cadastro.Pais;
+import atracao.model.cadastro.Pessoa;
+import atracao.model.cadastro.Servico;
+import atracao.model.contrato.Contrato;
+import atracao.output.GeradorArquivo;
+import atracao.repository.ContratoRepository;
 
 public class AguaLuzAtracaoApp {
 
@@ -36,8 +36,9 @@ public class AguaLuzAtracaoApp {
 		// armazenados dentro dele.
 
 		List<Contrato> contratos = contratoRepositorio.listarTodos();
-		GeradorArquivoCsv gerador = new GeradorArquivoCsv();
-		gerador.gerarArquivo(contratos);
+		GeradorArquivo gerador = new GeradorArquivo();
+		gerador.gerarArquivoCsv(contratos);
+		gerador.gerarArquivoTxt(contratos);
 	}
 
 	private static void faseAtracao() {
@@ -47,23 +48,13 @@ public class AguaLuzAtracaoApp {
 		contrato1.setNumeroProtocolo(123);
 		contrato1.setServico(Servico.LUZ);
 
-		// Criação da primeira "Pessoa"
-		Pessoa pessoa = new Pessoa();
-		pessoa.setCpf("123213");
-		pessoa.setNome("Athos Franco");
-		pessoa.setRg("89789");
-		pessoa.setPais(Pais.BRASIL);
-		pessoa.setCelular("982080536");
-
 		// Criaçao da instancia de endereço q vai fazer parte da Pessoa
-		Endereco endereco = new Endereco();
-		endereco.setBairro("Santo Antonio");
-		endereco.setCep("27.310-657");
-		endereco.setCidade("Sao Paulo");
-		endereco.setEstado("SP");
-		endereco.setLogradouro("Rua das Marias");
-		endereco.setNumero("243");
-		pessoa.setEndereco(endereco); // definindo o endereço da Pessoa criada com o endereço criado
+		Endereco endereco = new Endereco("Rua 7", "Casa 9", "65074550", "Vinhais", "São Luís", "MA");
+
+		// Criação da primeira "Pessoa"
+		Pessoa pessoa = new Pessoa("Athos Franco", "60719816386", "0909099009", "982080536", endereco, Pais.BRASIL);
+
+		// Atribuiçao da pessoa ao contrato e data
 		contrato1.setCadastro(pessoa);
 		contrato1.setDataHora(new Date());
 
@@ -74,22 +65,11 @@ public class AguaLuzAtracaoApp {
 		contrato2.setNumeroProtocolo(78678);
 		contrato2.setServico(Servico.AGUA);
 
-		Pessoa pessoa2 = new Pessoa();
-		pessoa2.setCpf("897897987");
-		pessoa2.setNome("Letícia Ferreira");
-		pessoa2.setRg("98908");
-		pessoa2.setPais(Pais.ESTADOS_UNIDOS);
+		Endereco endereco2 = new Endereco("Rua D", "Casa 44", "65074333", "Bequimao", "São Luís", "MA");
 
-		pessoa2.setCelular("98789789");
+		Pessoa pessoa2 = new Pessoa("Leticia Ferreira", "897897987", "0101010101", "982080536", endereco2,
+				Pais.ESTADOS_UNIDOS);
 
-		Endereco endereco2 = new Endereco();
-		endereco2.setBairro("Santo Antonio");
-		endereco2.setCep("27.310-657");
-		endereco2.setCidade("Sao Paulo");
-		endereco2.setEstado("SP");
-		endereco2.setLogradouro("Rua das Marias");
-		endereco2.setNumero("243");
-		pessoa2.setEndereco(endereco2);
 		contrato2.setCadastro(pessoa2);
 		contrato2.setDataHora(new Date());
 

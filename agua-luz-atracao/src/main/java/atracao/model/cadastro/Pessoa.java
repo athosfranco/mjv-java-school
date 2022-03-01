@@ -1,4 +1,4 @@
-package com.mjvschool.atracao.model.cadastro;
+package atracao.model.cadastro;
 
 public class Pessoa {
 	private String nome;
@@ -58,4 +58,13 @@ public class Pessoa {
 		this.endereco = endereco;
 	}
 
+	//pessoa constructor
+	public Pessoa(String nome, String cpf, String rg, String celular, Endereco endereco, Pais pais) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.celular = celular;
+		this.endereco = endereco;
+		this.pais = pais;
+	}
 }

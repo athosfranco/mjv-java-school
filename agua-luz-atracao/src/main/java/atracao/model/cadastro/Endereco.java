@@ -1,4 +1,4 @@
-package com.mjvschool.atracao.model.cadastro;
+package atracao.model.cadastro;
 
 public class Endereco {
 	private String logradouro;
@@ -7,6 +7,16 @@ public class Endereco {
 	private String bairro;
 	private String cidade;
 	private String estado;
+	
+	//Endereço constructor
+	public Endereco(String logradouro, String numero, String cep, String bairro, String cidade, String estado) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.cep = cep;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+	}
 	
 	public String getLogradouro() {
 		return logradouro;

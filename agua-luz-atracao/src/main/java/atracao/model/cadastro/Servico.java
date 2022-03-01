@@ -1,4 +1,4 @@
-package com.mjvschool.atracao.model.cadastro;
+package atracao.model.cadastro;
 
 public enum Servico {
 	AGUA("água", 137.21), // nome da conta e valor fixo

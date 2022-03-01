@@ -1,9 +1,9 @@
-package com.mjvschool.atracao.repository;
+package atracao.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mjvschool.atracao.model.contrato.Contrato;
+import atracao.model.contrato.Contrato;
 
 //ESTA CLASSE FUNCIONA COMO UM "BANCO DE DADOS FAKE". AQUI SERÃO ARMAZENADOS OS CONTRATOS CRIADOS PELA APLICAÇÃO DURANTE A SUA EXECUÇÃO.
 

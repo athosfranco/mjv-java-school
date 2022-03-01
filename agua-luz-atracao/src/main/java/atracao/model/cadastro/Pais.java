@@ -1,4 +1,4 @@
-package com.mjvschool.atracao.model.cadastro;
+package atracao.model.cadastro;
 
 public enum Pais {
 	// enum não é apenas uma variável constante, mas sim um OBJETO CONSTANTE

@@ -1,9 +1,9 @@
-package com.mjvschool.atracao.model.contrato;
+package atracao.model.contrato;
 
 import java.util.Date;
 
-import com.mjvschool.atracao.model.cadastro.Pessoa;
-import com.mjvschool.atracao.model.cadastro.Servico;
+import atracao.model.cadastro.Pessoa;
+import atracao.model.cadastro.Servico;
 
 //java beans
 public class Contrato {
