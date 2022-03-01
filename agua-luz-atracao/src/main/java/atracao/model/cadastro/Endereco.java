@@ -7,15 +7,17 @@ public class Endereco {
 	private String bairro;
 	private String cidade;
 	private String estado;
+	private String complemento;
 	
 	//Endereço constructor
-	public Endereco(String logradouro, String numero, String cep, String bairro, String cidade, String estado) {
+	public Endereco(String logradouro, String numero, String cep, String bairro, String cidade, String estado, String complemento) {
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.cep = cep;
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;
+		this.complemento = complemento;
 	}
 	
 	public String getLogradouro() {
@@ -54,5 +56,14 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
 	
 }

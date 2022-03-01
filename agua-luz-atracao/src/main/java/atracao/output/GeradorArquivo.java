@@ -7,9 +7,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import atracao.model.cadastro.Servico;
 import atracao.model.contrato.Contrato;
+import atracao.util.NumberUtil;
 import atracao.util.TextoUtil;
 
 public class GeradorArquivo {
@@ -24,9 +28,29 @@ public class GeradorArquivo {
 		// Faz um loop na lista de contratos e gera uma string com o nome e o CPF para
 		// cada contrato
 		for (Contrato ct : contratos) {
-			conteudo.append(ct.getCadastro().getNome().concat(";").concat(ct.getCadastro().getCpf()));
+			String nome = ct.getCadastro().getNome();
+			String cpf = ct.getCadastro().getCpf();
+			String celular = ct.getCadastro().getCelular();
+			String logr = ct.getCadastro().getEndereco().getLogradouro();
+			String num = ct.getCadastro().getEndereco().getNumero();
+			String compl = ct.getCadastro().getEndereco().getComplemento();
+			String bairro = ct.getCadastro().getEndereco().getBairro();
+			String cidade = ct.getCadastro().getEndereco().getCidade();
+			String uf = ct.getCadastro().getEndereco().getEstado();
+			String cep = ct.getCadastro().getEndereco().getCep();
+			String protocolo = String.valueOf(ct.getNumeroProtocolo());
+			String data = String.valueOf(ct.getDataHora());
+			String tipoContrato = String.valueOf(ct.getServico());
+			String valorServico = String.valueOf(ct.getServico().getValor());
+
+			conteudo.append(nome.concat(";").concat(cpf).concat(";").concat(celular).concat(";").concat(logr)
+					.concat(";").concat(num).concat(";").concat(compl).concat(";").concat(bairro).concat(";")
+					.concat(cidade).concat(";").concat(uf).concat(";").concat(cep).concat(";")
+					.concat(protocolo).concat(";").concat(data).concat(";")
+					.concat(tipoContrato).concat(";").concat(valorServico));
+
 			conteudo.append("\n");
-	
+
 		}
 
 		System.out.println(conteudo.toString());
@@ -49,14 +73,61 @@ public class GeradorArquivo {
 	}
 
 	// ESSE MÉTODO GERA ARQUIVO NO ASPECTO POSICIONAL
+	@SuppressWarnings("deprecation")
 	public void gerarArquivoTxt(List<Contrato> contratos) {
 
 		StringBuilder conteudo = new StringBuilder();
 
 		for (Contrato ct : contratos) {
-			conteudo.append(ct.getCadastro().getCpf());
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getNome(), 30));
-			conteudo.append(ct.getCadastro().getCelular());
+			// Formata o CPF
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getCpf().replace(".", ""), 11));
+
+			// Formata o NOME
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getNome(), 30).toUpperCase());
+
+			// Formata o CELULAR
+			conteudo.append(NumberUtil.formatarCelular(ct.getCadastro().getCelular(), 11));
+
+			// Formata o LOGRADOURO
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getLogradouro(), 20).toUpperCase());
+
+			// Formata o NUMERO
+			conteudo.append(NumberUtil.adcZerosEsquerda(ct.getCadastro().getEndereco().getNumero(), 6));
+
+			// Formata o COMPLEMENTO
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getComplemento(), 10).toUpperCase());
+
+			// Formata o BAIRRO
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getBairro(), 15).toUpperCase());
+
+			// Formata a CIDADE
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getCidade(), 30).toUpperCase());
+
+			// Formata a UF
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getEstado(), 2).toUpperCase());
+
+			// Formata o CEP
+			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getCep().replace(".", ""), 8));
+
+			// Formata o PROTOCOLO
+			conteudo.append(NumberUtil.adcZerosEsquerda(String.valueOf(ct.getNumeroProtocolo()), 10));
+
+			// Formata a DATA
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String dataFormatada = formatter.format(ct.getDataHora());
+			conteudo.append(dataFormatada.replaceAll("\\D+", ""));
+
+			// Formata a HORA
+			String hora = String.valueOf(ct.getDataHora().getHours()) + String.valueOf(ct.getDataHora().getMinutes());
+			conteudo.append(NumberUtil.adcZerosEsquerda(hora, 4));
+
+			// Formata o TIPO
+			String tipoContrato = ct.getServico() == Servico.AGUA ? "A" : "L";
+			conteudo.append(tipoContrato);
+
+			// Formata o VALOR
+			conteudo.append(NumberUtil.adcZerosEsquerda(String.valueOf(ct.getServico().getValor()), 8));
+
 			conteudo.append("\n");
 		}
 
