@@ -23,7 +23,7 @@ public class NumberUtil {
 	}
 
 	// formatar numero com zeros à esquerda
-	public static String adcZerosEsquerda(String numOriginal, int tamanho) {
+	public static String adicionaZerosEsquerda(String numOriginal, int tamanho) {
 		
 		String novaString = numOriginal.replaceAll("\\D+", "");
 

@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import atracao.model.cadastro.Servico;
@@ -31,9 +30,9 @@ public class GeradorArquivo {
 			String nome = ct.getCadastro().getNome();
 			String cpf = ct.getCadastro().getCpf();
 			String celular = ct.getCadastro().getCelular();
-			String logr = ct.getCadastro().getEndereco().getLogradouro();
+			String logradouro = ct.getCadastro().getEndereco().getLogradouro();
 			String num = ct.getCadastro().getEndereco().getNumero();
-			String compl = ct.getCadastro().getEndereco().getComplemento();
+			String complemento = ct.getCadastro().getEndereco().getComplemento();
 			String bairro = ct.getCadastro().getEndereco().getBairro();
 			String cidade = ct.getCadastro().getEndereco().getCidade();
 			String uf = ct.getCadastro().getEndereco().getEstado();
@@ -43,8 +42,8 @@ public class GeradorArquivo {
 			String tipoContrato = String.valueOf(ct.getServico());
 			String valorServico = String.valueOf(ct.getServico().getValor());
 
-			conteudo.append(nome.concat(";").concat(cpf).concat(";").concat(celular).concat(";").concat(logr)
-					.concat(";").concat(num).concat(";").concat(compl).concat(";").concat(bairro).concat(";")
+			conteudo.append(nome.concat(";").concat(cpf).concat(";").concat(celular).concat(";").concat(logradouro)
+					.concat(";").concat(num).concat(";").concat(complemento).concat(";").concat(bairro).concat(";")
 					.concat(cidade).concat(";").concat(uf).concat(";").concat(cep).concat(";")
 					.concat(protocolo).concat(";").concat(data).concat(";")
 					.concat(tipoContrato).concat(";").concat(valorServico));
@@ -92,7 +91,7 @@ public class GeradorArquivo {
 			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getLogradouro(), 20).toUpperCase());
 
 			// Formata o NUMERO
-			conteudo.append(NumberUtil.adcZerosEsquerda(ct.getCadastro().getEndereco().getNumero(), 6));
+			conteudo.append(NumberUtil.adicionaZerosEsquerda(ct.getCadastro().getEndereco().getNumero(), 6));
 
 			// Formata o COMPLEMENTO
 			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getComplemento(), 10).toUpperCase());
@@ -110,7 +109,7 @@ public class GeradorArquivo {
 			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getCep().replace(".", ""), 8));
 
 			// Formata o PROTOCOLO
-			conteudo.append(NumberUtil.adcZerosEsquerda(String.valueOf(ct.getNumeroProtocolo()), 10));
+			conteudo.append(NumberUtil.adicionaZerosEsquerda(String.valueOf(ct.getNumeroProtocolo()), 10));
 
 			// Formata a DATA
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -119,14 +118,14 @@ public class GeradorArquivo {
 
 			// Formata a HORA
 			String hora = String.valueOf(ct.getDataHora().getHours()) + String.valueOf(ct.getDataHora().getMinutes());
-			conteudo.append(NumberUtil.adcZerosEsquerda(hora, 4));
+			conteudo.append(NumberUtil.adicionaZerosEsquerda(hora, 4));
 
 			// Formata o TIPO
 			String tipoContrato = ct.getServico() == Servico.AGUA ? "A" : "L";
 			conteudo.append(tipoContrato);
 
 			// Formata o VALOR
-			conteudo.append(NumberUtil.adcZerosEsquerda(String.valueOf(ct.getServico().getValor()), 8));
+			conteudo.append(NumberUtil.adicionaZerosEsquerda(String.valueOf(ct.getServico().getValor()), 8));
 
 			conteudo.append("\n");
 		}

@@ -49,10 +49,11 @@ public class AguaLuzAtracaoApp {
 		contrato1.setServico(Servico.LUZ);
 
 		// Criaçao da instancia de endereço q vai fazer parte da Pessoa
-		Endereco endereco = new Endereco("Rua 7", "9", "65074550", "Vinhais", "São Luís", "MA", "Prox Praça Letrado");
+		Endereco endereco = new Endereco("Rua 7", "9", "65074550", "Vinhais", "Sao Luis", "MA", "Quadra 11");
 
 		// Criação da primeira "Pessoa"
-		Pessoa pessoa = new Pessoa("Athos Franco", "607.198.163.86", "0909099009", "(98) 98208-0536", endereco, Pais.BRASIL);
+		Pessoa pessoa = new Pessoa("Athos Franco", "607.198.163.86", "0909099009", "(98) 98208-0536", endereco,
+				Pais.BRASIL);
 
 		// Atribuiçao da pessoa ao contrato e data
 		contrato1.setCadastro(pessoa);
@@ -65,7 +66,8 @@ public class AguaLuzAtracaoApp {
 		contrato2.setNumeroProtocolo(78678);
 		contrato2.setServico(Servico.AGUA);
 
-		Endereco endereco2 = new Endereco("Rua D", "Casa 44", "65074333", "Bequimao", "São Luís", "MA", "Prox Fenix Lanches");
+		Endereco endereco2 = new Endereco("Rua D", "Casa 44", "65074333", "Maranhao Novo", "Sao Luis", "MA",
+				"Quadra 10");
 
 		Pessoa pessoa2 = new Pessoa("Leticia Ferreira", "897897987", "0101010101", "982080536", endereco2,
 				Pais.ESTADOS_UNIDOS);
