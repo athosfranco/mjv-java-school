@@ -69,7 +69,7 @@ public class AguaLuzAtracaoApp {
 		Endereco endereco2 = new Endereco("Rua D", "Casa 44", "65074333", "Maranhao Novo", "Sao Luis", "MA",
 				"Quadra 10");
 
-		Pessoa pessoa2 = new Pessoa("Leticia Ferreira", "897897987", "0101010101", "982080536", endereco2,
+		Pessoa pessoa2 = new Pessoa("Leticia", "897897987", "0101010101", "982080536", endereco2,
 				Pais.ESTADOS_UNIDOS);
 
 		contrato2.setCadastro(pessoa2);
