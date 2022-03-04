@@ -6,6 +6,7 @@ public class Pessoa {
 	private String rg;
 	private String celular;
 	private Endereco endereco;
+	private PreferenciaNotificacao preferencia;
 	private Pais pais;
 
 	// método set é definido aqui, para justamente definir qual o país da instância
@@ -58,13 +59,23 @@ public class Pessoa {
 		this.endereco = endereco;
 	}
 
-	//pessoa constructor
-	public Pessoa(String nome, String cpf, String rg, String celular, Endereco endereco, Pais pais) {
+	public PreferenciaNotificacao getPreferencia() {
+		return preferencia;
+	}
+
+	public void setPreferencia(PreferenciaNotificacao preferencia) {
+		this.preferencia = preferencia;
+	}
+
+	// pessoa constructor
+	public Pessoa(String nome, String cpf, String rg, String celular, Endereco endereco, Pais pais,
+			PreferenciaNotificacao preferencia) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.celular = celular;
 		this.endereco = endereco;
 		this.pais = pais;
+		this.preferencia = preferencia;
 	}
 }

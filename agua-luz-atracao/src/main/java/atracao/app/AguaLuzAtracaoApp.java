@@ -6,6 +6,7 @@ import java.util.List;
 import atracao.model.cadastro.Endereco;
 import atracao.model.cadastro.Pais;
 import atracao.model.cadastro.Pessoa;
+import atracao.model.cadastro.PreferenciaNotificacao;
 import atracao.model.cadastro.Servico;
 import atracao.model.contrato.Contrato;
 import atracao.output.GeradorArquivo;
@@ -53,7 +54,7 @@ public class AguaLuzAtracaoApp {
 
 		// Criação da primeira "Pessoa"
 		Pessoa pessoa = new Pessoa("Athos Franco", "607.198.163.86", "0909099009", "(98) 98208-0536", endereco,
-				Pais.BRASIL);
+				Pais.BRASIL, PreferenciaNotificacao.SMS);
 
 		// Atribuiçao da pessoa ao contrato e data
 		contrato1.setCadastro(pessoa);
@@ -70,7 +71,7 @@ public class AguaLuzAtracaoApp {
 				"Quadra 10");
 
 		Pessoa pessoa2 = new Pessoa("Leticia", "897897987", "0101010101", "982080536", endereco2,
-				Pais.ESTADOS_UNIDOS);
+				Pais.ESTADOS_UNIDOS, PreferenciaNotificacao.WHATS);
 
 		contrato2.setCadastro(pessoa2);
 		contrato2.setDataHora(new Date());
