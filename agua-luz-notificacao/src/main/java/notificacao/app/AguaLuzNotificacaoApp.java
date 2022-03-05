@@ -1,6 +1,7 @@
 package notificacao.app;
 
 import notificacao.model.LeitorArquivo;
+import notificacao.output.GeradorArquivoNotificacao;
 import notificacao.output.GeradorNotificacao;
 import notificacao.output.TipoNotificacao;
 import notificacao.util.TextoUtil;
@@ -19,6 +20,9 @@ public class AguaLuzNotificacaoApp {
 
 		int index = 1; // mantém um registro numerico de qual msg está sendo enviada
 
+		StringBuilder arquivoNotificacao = new StringBuilder(); // Cria o string builder que vai armazenar todas as
+																// notificações geradas para então gerar o arquivo .txt
+
 		for (String contrato : linhasContrato) {
 
 			// O método .formatarContrato() recebe como parametro cada uma das linhas
@@ -29,11 +33,20 @@ public class AguaLuzNotificacaoApp {
 			TipoNotificacao tipoNotificacao = conteudoMensagem[12].equals("WHATS") ? TipoNotificacao.WHATS
 					: TipoNotificacao.SMS;
 
-			// Envia a notificação
-			GeradorNotificacao.enviarMensagem(tipoNotificacao, conteudoMensagem, index);
+			// "Envia" a notificação
+			String msgNotificacao = GeradorNotificacao.enviarMensagem(tipoNotificacao, conteudoMensagem, index);
+
+			// Imprime a notificação no console
+			System.out.println(msgNotificacao);
+			
+			//adiciona essa msg ao StringBuilder do arquivo
+			arquivoNotificacao.append(msgNotificacao).append("\n");
 
 			index++;
 		}
+		
+		//Usa o método 
+		GeradorArquivoNotificacao.gerarArquivoTxt(arquivoNotificacao.toString());
 
 	}
 
