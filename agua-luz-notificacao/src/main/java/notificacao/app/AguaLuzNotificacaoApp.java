@@ -1,8 +1,5 @@
 package notificacao.app;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import notificacao.model.LeitorArquivo;
 import notificacao.output.GeradorNotificacao;
 import notificacao.output.TipoNotificacao;
@@ -29,25 +26,14 @@ public class AguaLuzNotificacaoApp {
 			// exibidas na msg de notificação
 			String[] conteudoMensagem = TextoUtil.formatarContrato(contrato);
 
-			TipoNotificacao tipoNotificacao = conteudoMensagem[12].equals("SMS") ? TipoNotificacao.SMS
-					: TipoNotificacao.WHATS;
+			TipoNotificacao tipoNotificacao = conteudoMensagem[12].equals("WHATS") ? TipoNotificacao.WHATS
+					: TipoNotificacao.SMS;
 
 			// Envia a notificação
 			GeradorNotificacao.enviarMensagem(tipoNotificacao, conteudoMensagem, index);
 
 			index++;
 		}
-		
-		Locale localeBR = new Locale("de","DE");
-		
-		NumberFormat dinheiro = NumberFormat.getCurrencyInstance(localeBR);
-		
-		double valorDinheiro = 340.55;
-		
-		System.out.println(dinheiro.format(valorDinheiro));
-		
-		
-		
 
 	}
 

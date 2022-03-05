@@ -1,10 +1,22 @@
 package notificacao.util;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.chrono.IsoChronology;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.FormatStyle;
+import java.util.Date;
+import java.util.Locale;
+
 public class TextoUtil {
 
 	public static String[] formatarContrato(String linhaContrato) {
 
-		String[] conteudoNotificacao = new String[13];
+		String[] conteudoNotificacao = new String[14];
 
 		// Este "for" loop está pegando cada entrada de acordo com a sua posição no
 		// arquivo de texto e formatando a mesma para a forma como deve ser exibida na
@@ -28,12 +40,25 @@ public class TextoUtil {
 		String protocolo = linhaContrato.substring(143, 153);
 		conteudoNotificacao[1] = protocolo;
 
+		// LOCALE
+		String localeExtraido = linhaContrato.substring(179);
+		conteudoNotificacao[13] = localeExtraido;
+
+		String siglaIdioma = localeExtraido.split("-")[0];
+		String siglaPais = localeExtraido.split("-")[1];
+
+		Locale locale = new Locale(siglaIdioma, siglaPais);
+
 		// Formatar a DATA ////////////////////////////////////////////////
+
 		String data = linhaContrato.substring(153, 161);
+
 		String ano = data.substring(0, 4);
 		String mes = data.substring(4, 6);
 		String dia = data.substring(6, 8);
-		data = dia + "/" + mes + "/" + ano;
+
+		data = siglaPais.equals("BR") ? dia + "/" + mes  + "/" + ano : ano + "/" + mes  + "/" + dia;
+
 		conteudoNotificacao[2] = data;
 
 		// Formatar a HORA ////////////////////////////////////////////////
@@ -121,27 +146,24 @@ public class TextoUtil {
 
 		cep = inicioCep + "." + meioCep + "-" + finalCep;
 
-		conteudoNotificacao[10] = cep;			
-		
+		conteudoNotificacao[10] = cep;
+
 		// Numero Celular
 		String celular = linhaContrato.substring(41, 52);
 		conteudoNotificacao[11] = celular;
-		
+
 		// Preferencia de Notificacao
-		conteudoNotificacao[12] = linhaContrato.substring(174);
+		conteudoNotificacao[12] = linhaContrato.substring(174, 179);
 
 		/*
-		 * OUTROS DADOS
+		 * OUTROS DADOS - por enquanto não são necessários
 		 * 
-		 * String cpf = contrato.substring(0, 11); 
-		 * String celular = contrato.substring(41, 52);
-		 *  String numero = contrato.substring(72, 78);
+		 * String cpf = contrato.substring(0, 11); String celular =
+		 * contrato.substring(41, 52); String numero = contrato.substring(72, 78);
 		 * 
 		 */
 
 		return conteudoNotificacao;
 	}
-
-
 
 }
