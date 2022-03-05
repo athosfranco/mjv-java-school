@@ -32,6 +32,11 @@ public class GeradorNotificacao {
 
 		msgNotificacao.append(headerMsg).append(bodyMsg).append(divisor);
 		
+		String cpf = conteudo[14].trim().replace("-", "");
+		
+		GeradorArquivoNotificacao.gerarArquivoTxt(msgNotificacao, cpf);
+		
+				
 		return msgNotificacao.toString();	
 
 	}

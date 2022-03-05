@@ -25,6 +25,8 @@ public class AguaLuzNotificacaoApp {
 
 		for (String contrato : linhasContrato) {
 
+			System.out.println(contrato);
+
 			// O método .formatarContrato() recebe como parametro cada uma das linhas
 			// representando um contrato, e formata cada uma das entradas para serem
 			// exibidas na msg de notificação
@@ -38,15 +40,14 @@ public class AguaLuzNotificacaoApp {
 
 			// Imprime a notificação no console
 			System.out.println(msgNotificacao);
-			
-			//adiciona essa msg ao StringBuilder do arquivo
+
+			// adiciona essa msg ao StringBuilder do arquivo
 			arquivoNotificacao.append(msgNotificacao).append("\n");
 
 			index++;
 		}
+
 		
-		//Usa o método 
-		GeradorArquivoNotificacao.gerarArquivoTxt(arquivoNotificacao.toString());
 
 	}
 

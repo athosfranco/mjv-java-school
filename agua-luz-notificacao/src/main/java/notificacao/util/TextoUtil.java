@@ -1,22 +1,12 @@
 package notificacao.util;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.chrono.IsoChronology;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.FormatStyle;
-import java.util.Date;
 import java.util.Locale;
 
 public class TextoUtil {
 
 	public static String[] formatarContrato(String linhaContrato) {
 
-		String[] conteudoNotificacao = new String[14];
+		String[] conteudoNotificacao = new String[15];
 
 		// Este "for" loop está pegando cada entrada de acordo com a sua posição no
 		// arquivo de texto e formatando a mesma para a forma como deve ser exibida na
@@ -35,6 +25,10 @@ public class TextoUtil {
 		String nomeFormatado = String.join(" ", nomeRepartido);
 
 		conteudoNotificacao[0] = nomeFormatado;
+
+		// CPF
+		String cpf = linhaContrato.substring(0, 11);
+		conteudoNotificacao[14] = cpf;
 
 		// PROTOCOLO
 		String protocolo = linhaContrato.substring(143, 153);
@@ -57,7 +51,7 @@ public class TextoUtil {
 		String mes = data.substring(4, 6);
 		String dia = data.substring(6, 8);
 
-		data = siglaPais.equals("BR") ? dia + "/" + mes  + "/" + ano : ano + "/" + mes  + "/" + dia;
+		data = siglaPais.equals("BR") ? dia + "/" + mes + "/" + ano : ano + "/" + mes + "/" + dia;
 
 		conteudoNotificacao[2] = data;
 

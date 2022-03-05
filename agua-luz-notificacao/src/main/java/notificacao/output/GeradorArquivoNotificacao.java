@@ -8,23 +8,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GeradorArquivoNotificacao {
-	
-	public static void gerarArquivoTxt(String conteudo) {
+
+	public static void gerarArquivoTxt(StringBuilder msgNotificacao, String prefixo) {
 		// VERIFICA SE O CAMINHO EXISTE. SE NÃO EXISTIR, USAR O .MKDIRS() PARA CRIAR O
-				// CAMINHO
-				File output = new File("C:\\estudo\\mjv-java-school\\agua-luz-output");
-				if (!output.exists())
-					output.mkdirs();
+		// CAMINHO
+		File output = new File("C:\\estudo\\mjv-java-school\\agua-luz-output");
+		if (!output.exists())
+			output.mkdirs();
 
-				Path path = Paths.get("C:\\estudo\\mjv-java-school\\agua-luz-output\\agua-luz-notificacao.txt");
+		Path path = Paths.get("C:\\estudo\\mjv-java-school\\agua-luz-output\\" + prefixo + "-agua-luz-notificacao.txt");
 
-				// tratamento de exceção
-				try {
-					Files.write(path, conteudo.toString().getBytes(StandardCharsets.UTF_8));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		// tratamento de exceção
+		try {
+			Files.write(path, msgNotificacao.toString().getBytes(StandardCharsets.UTF_8));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
