@@ -5,7 +5,7 @@ public class GeradorNotificacao {
 	public static void enviarMensagem(TipoNotificacao tipo, String[] conteudoDaMensagem, int index) {
 
 		System.out.println(
-				"Enviando mensagem #" + index + " via " + tipo.getTipo() + " para o número: " + conteudoDaMensagem[11]);
+				"[Mensagem #" + index + " enviada via " + tipo.getTipo() + " para o número: " + conteudoDaMensagem[11] + "] \n");
 
 		System.out.println("Senhor(a) " + conteudoDaMensagem[0]
 				+ ", Informamos que conforme contrato com protocolo de número " + conteudoDaMensagem[1]

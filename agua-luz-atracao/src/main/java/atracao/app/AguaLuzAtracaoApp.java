@@ -44,7 +44,7 @@ public class AguaLuzAtracaoApp {
 
 	private static void faseAtracao() {
 
-		// Criação do primeiro contrato
+		// CONTRATO #1
 		Contrato contrato1 = new Contrato();
 		contrato1.setNumeroProtocolo(123);
 		contrato1.setServico(Servico.LUZ);
@@ -62,7 +62,7 @@ public class AguaLuzAtracaoApp {
 
 		contratoRepositorio.gravar(contrato1); // "gravando" esse contrato dentro do repositorio fake
 
-		// Repetiçao do mesmo processo, novo contrato
+		// CONTRATO #2
 		Contrato contrato2 = new Contrato();
 		contrato2.setNumeroProtocolo(78678);
 		contrato2.setServico(Servico.AGUA);
@@ -70,12 +70,28 @@ public class AguaLuzAtracaoApp {
 		Endereco endereco2 = new Endereco("Rua D", "Casa 44", "65074333", "Maranhao Novo", "Sao Luis", "MA",
 				"Quadra 10");
 
-		Pessoa pessoa2 = new Pessoa("Leticia", "897897987", "0101010101", "982080536", endereco2,
-				Pais.ESTADOS_UNIDOS, PreferenciaNotificacao.WHATS);
+		Pessoa pessoa2 = new Pessoa("Leticia", "897897987", "0101010101", "982080536", endereco2, Pais.ESTADOS_UNIDOS,
+				PreferenciaNotificacao.WHATS);
 
 		contrato2.setCadastro(pessoa2);
 		contrato2.setDataHora(new Date());
 
 		contratoRepositorio.gravar(contrato2);
+
+		// CONTRATO #3
+		Contrato contrato3 = new Contrato();
+		contrato3.setNumeroProtocolo(4567821);
+		contrato3.setServico(Servico.LUZ);
+
+		Endereco endereco3 = new Endereco("Rua das Marias", "243", "27.310-657", "Santo Antonio", "Sao Paulo", "SP",
+				"Quadra 10");
+
+		Pessoa pessoa3 = new Pessoa("Gleyson Sampaio", "234.765.987-27", "2022025687", "(11) 99768-1515", endereco3,
+				Pais.ALEMANHA, PreferenciaNotificacao.WHATS);
+
+		contrato3.setCadastro(pessoa3);
+		contrato3.setDataHora(new Date());
+
+		contratoRepositorio.gravar(contrato3);
 	}
 }

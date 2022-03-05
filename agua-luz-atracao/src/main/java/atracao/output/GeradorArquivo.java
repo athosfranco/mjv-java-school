@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import atracao.model.cadastro.PreferenciaNotificacao;
 import atracao.model.cadastro.Servico;
 import atracao.model.contrato.Contrato;
 import atracao.util.NumberUtil;
@@ -24,8 +25,17 @@ public class GeradorArquivo {
 		// String, pois a StringBuilder é mais poderosa
 		StringBuilder conteudo = new StringBuilder();
 
+		// Gera a primeira linha do arquivo .csv contendo o campo das colunas
+		conteudo.append("NOME".concat(";").concat("CPF").concat(";").concat("CELULAR").concat(";").concat("LOGRADOURO")
+				.concat(";").concat("NUMERO").concat(";").concat("COMPLEMENTO").concat(";").concat("BAIRRO").concat(";")
+				.concat("CIDADE").concat(";").concat("ESTADO").concat(";").concat("CEP").concat(";").concat("PROTOCOLO")
+				.concat(";").concat("DATA").concat(";").concat("SERVICO").concat(";").concat("VALOR").concat(";")
+				.concat("NOTIFICACAO").concat(";").concat("LOCALE"));
+
+		conteudo.append("\n");
+
 		// Faz um loop na lista de contratos e gera uma string com o nome e o CPF para
-		// cada contrato
+		// cada contrato, cada um ocupando uma linha no arquivo
 		for (Contrato ct : contratos) {
 			String nome = ct.getCadastro().getNome();
 			String cpf = ct.getCadastro().getCpf();
@@ -41,12 +51,15 @@ public class GeradorArquivo {
 			String data = String.valueOf(ct.getDataHora());
 			String tipoContrato = String.valueOf(ct.getServico());
 			String valorServico = String.valueOf(ct.getServico().getValor());
+			String preferenciaNotificacao = String.valueOf(ct.getCadastro().getPreferencia());
+			String localePais = ct.getCadastro().getPais().getSiglaIdioma() + "-"
+					+ ct.getCadastro().getPais().getSiglaPais();
 
 			conteudo.append(nome.concat(";").concat(cpf).concat(";").concat(celular).concat(";").concat(logradouro)
 					.concat(";").concat(num).concat(";").concat(complemento).concat(";").concat(bairro).concat(";")
-					.concat(cidade).concat(";").concat(uf).concat(";").concat(cep).concat(";")
-					.concat(protocolo).concat(";").concat(data).concat(";")
-					.concat(tipoContrato).concat(";").concat(valorServico));
+					.concat(cidade).concat(";").concat(uf).concat(";").concat(cep).concat(";").concat(protocolo)
+					.concat(";").concat(data).concat(";").concat(tipoContrato).concat(";").concat(valorServico)
+					.concat(";").concat(preferenciaNotificacao).concat(";").concat(localePais));
 
 			conteudo.append("\n");
 
@@ -127,9 +140,19 @@ public class GeradorArquivo {
 			// Formata o VALOR
 			conteudo.append(NumberUtil.adicionaZerosEsquerda(String.valueOf(ct.getServico().getValor()), 8));
 
+			// Formata a PREFERENCIA DE NOTIFICACAO
+			String preferencia = TextoUtil
+					.formatField(ct.getCadastro().getPreferencia() == PreferenciaNotificacao.SMS ? "SMS" : "WHATS", 5);
+			conteudo.append(preferencia);
+
+			// Formata o PAÍS (LOCALE)
+			String localePais = ct.getCadastro().getPais().getSiglaIdioma() + "-"
+					+ ct.getCadastro().getPais().getSiglaPais();
+			conteudo.append(localePais);
+
 			conteudo.append("\n");
 		}
-
+		
 		System.out.println(conteudo.toString());
 
 		// VERIFICA SE O CAMINHO EXISTE. SE NÃO EXISTIR, USAR O .MKDIRS() PARA CRIAR O

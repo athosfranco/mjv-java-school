@@ -2,26 +2,26 @@ package atracao.model.cadastro;
 
 public enum Pais {
 	// enum não é apenas uma variável constante, mas sim um OBJETO CONSTANTE
-	BRASIL("BR", "Brasil"), PERU("PE", "Peru"), ESTADOS_UNIDOS("US", "Estados Unidos");
+	BRASIL("pt", "BR"), JAPAO("ja", "JP"), ESTADOS_UNIDOS("en", "US"), ALEMANHA("de", "DE");
 
 	// atributos do enum
-	private String sigla;
-	private String nome;
+	private String siglaIdioma;
+	private String siglaPais;
 
 	// o construtor é privado, pois o enum é PRÉ-DEFINIDO
 	// métodos com o mesmo nome da classe e sem nenhum tipo de retorno são chamados
 	// de CONSTRUTORES
-	private Pais(String sigla, String nome) {
-		this.nome = nome;
-		this.sigla = sigla;
+	private Pais(String siglaIdioma, String siglaPais) {
+		this.siglaIdioma = siglaIdioma;
+		this.siglaPais = siglaPais;
 	}
 
 	// Os getters sao definidos para se obter o valor
-	public String getSigla() {
-		return sigla;
+	public String getSiglaIdioma() {
+		return siglaIdioma;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getSiglaPais() {
+		return siglaPais;
 	}
 }

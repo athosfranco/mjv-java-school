@@ -4,7 +4,7 @@ public class TextoUtil {
 
 	public static String[] formatarContrato(String linhaContrato) {
 
-		String[] conteudoNotificacao = new String[12];
+		String[] conteudoNotificacao = new String[13];
 
 		// Este "for" loop está pegando cada entrada de acordo com a sua posição no
 		// arquivo de texto e formatando a mesma para a forma como deve ser exibida na
@@ -121,11 +121,14 @@ public class TextoUtil {
 
 		cep = inicioCep + "." + meioCep + "-" + finalCep;
 
-		conteudoNotificacao[10] = cep;
+		conteudoNotificacao[10] = cep;			
 		
-		// EXTRA: Numero Celular
+		// Numero Celular
 		String celular = linhaContrato.substring(41, 52);
 		conteudoNotificacao[11] = celular;
+		
+		// Preferencia de Notificacao
+		conteudoNotificacao[12] = linhaContrato.substring(174);
 
 		/*
 		 * OUTROS DADOS
