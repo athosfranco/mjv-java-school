@@ -3,6 +3,8 @@ package notificacao.output;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import notificacao.model.TipoNotificacao;
+
 public class GeradorNotificacao {
 
 	public static String enviarMensagem(TipoNotificacao tipo, String[] conteudo, int index) {

@@ -92,34 +92,34 @@ public class GeradorArquivo {
 
 		for (Contrato ct : contratos) {
 			// Formata o CPF
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getCpf().replace(".", ""), 11));
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getCpf().replace(".", ""), 11));
 
 			// Formata o NOME
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getNome(), 30).toUpperCase());
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getNome(), 30).toUpperCase());
 
 			// Formata o CELULAR
 			conteudo.append(NumberUtil.formatarCelular(ct.getCadastro().getCelular(), 11));
 
 			// Formata o LOGRADOURO
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getLogradouro(), 20).toUpperCase());
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getEndereco().getLogradouro(), 20).toUpperCase());
 
 			// Formata o NUMERO
 			conteudo.append(NumberUtil.adicionaZerosEsquerda(ct.getCadastro().getEndereco().getNumero(), 6));
 
 			// Formata o COMPLEMENTO
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getComplemento(), 10).toUpperCase());
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getEndereco().getComplemento(), 10).toUpperCase());
 
 			// Formata o BAIRRO
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getBairro(), 15).toUpperCase());
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getEndereco().getBairro(), 15).toUpperCase());
 
 			// Formata a CIDADE
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getCidade(), 30).toUpperCase());
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getEndereco().getCidade(), 30).toUpperCase());
 
 			// Formata a UF
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getEstado(), 2).toUpperCase());
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getEndereco().getEstado(), 2).toUpperCase());
 
 			// Formata o CEP
-			conteudo.append(TextoUtil.formatField(ct.getCadastro().getEndereco().getCep().replace(".", ""), 8));
+			conteudo.append(TextoUtil.formatarCampo(ct.getCadastro().getEndereco().getCep().replace(".", ""), 8));
 
 			// Formata o PROTOCOLO
 			conteudo.append(NumberUtil.adicionaZerosEsquerda(String.valueOf(ct.getNumeroProtocolo()), 10));
@@ -142,7 +142,7 @@ public class GeradorArquivo {
 
 			// Formata a PREFERENCIA DE NOTIFICACAO
 			String preferencia = TextoUtil
-					.formatField(ct.getCadastro().getPreferencia() == PreferenciaNotificacao.SMS ? "SMS" : "WHATS", 5);
+					.formatarCampo(ct.getCadastro().getPreferencia() == PreferenciaNotificacao.SMS ? "SMS" : "WHATS", 5);
 			conteudo.append(preferencia);
 
 			// Formata o PAÍS (LOCALE)

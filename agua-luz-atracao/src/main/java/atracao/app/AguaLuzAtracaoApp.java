@@ -43,17 +43,18 @@ public class AguaLuzAtracaoApp {
 	}
 
 	private static void faseAtracao() {
+		//////////////// CRIAÇÃO DOS CONTRATOS
 
 		// CONTRATO #1
 		Contrato contrato1 = new Contrato();
-		contrato1.setNumeroProtocolo(123);
+		contrato1.setNumeroProtocolo(8964);
 		contrato1.setServico(Servico.LUZ);
 
 		// Criaçao da instancia de endereço q vai fazer parte da Pessoa
 		Endereco endereco = new Endereco("Rua 7", "9", "65074550", "Vinhais", "Sao Luis", "MA", "Quadra 11");
 
 		// Criação da primeira "Pessoa"
-		Pessoa pessoa = new Pessoa("Athos Franco", "607.198.163.86", "0909099009", "(98) 98208-0536", endereco,
+		Pessoa pessoa = new Pessoa("Athos Franco", "607.198.163.86", "568568345", "(98) 98208-0536", endereco,
 				Pais.BRASIL, PreferenciaNotificacao.SMS);
 
 		// Atribuiçao da pessoa ao contrato e data
@@ -64,13 +65,13 @@ public class AguaLuzAtracaoApp {
 
 		// CONTRATO #2
 		Contrato contrato2 = new Contrato();
-		contrato2.setNumeroProtocolo(78678);
+		contrato2.setNumeroProtocolo(7867844);
 		contrato2.setServico(Servico.AGUA);
 
 		Endereco endereco2 = new Endereco("Rua D", "Casa 44", "65074333", "Maranhao Novo", "Sao Luis", "MA",
 				"Quadra 10");
 
-		Pessoa pessoa2 = new Pessoa("Leticia", "897897987", "0101010101", "982080536", endereco2, Pais.ESTADOS_UNIDOS,
+		Pessoa pessoa2 = new Pessoa("Leticia Ferreira", "897897987", "569458942", "982080536", endereco2, Pais.ESTADOS_UNIDOS,
 				PreferenciaNotificacao.WHATS);
 
 		contrato2.setCadastro(pessoa2);
@@ -80,7 +81,7 @@ public class AguaLuzAtracaoApp {
 
 		// CONTRATO #3
 		Contrato contrato3 = new Contrato();
-		contrato3.setNumeroProtocolo(4567821);
+		contrato3.setNumeroProtocolo(68945563);
 		contrato3.setServico(Servico.LUZ);
 
 		Endereco endereco3 = new Endereco("Rua das Marias", "243", "27.310-657", "Santo Antonio", "Sao Paulo", "SP",
@@ -93,5 +94,22 @@ public class AguaLuzAtracaoApp {
 		contrato3.setDataHora(new Date());
 
 		contratoRepositorio.gravar(contrato3);
+		
+		
+		// CONTRATO #4
+		Contrato contrato4 = new Contrato();
+		contrato4.setNumeroProtocolo(9530321);
+		contrato4.setServico(Servico.LUZ);
+
+		Endereco endereco4 = new Endereco("Rua Dq Bacelar", "203", "65.700-235", "Borborema", "Fortaleza", "CE",
+				"Quadra 15");
+
+		Pessoa pessoa4 = new Pessoa("Marcio Feitosa", "123.455.778-98", "2345986", "(98) 98745-2213", endereco4,
+				Pais.ESTADOS_UNIDOS, PreferenciaNotificacao.WHATS);
+
+		contrato4.setCadastro(pessoa4);
+		contrato4.setDataHora(new Date());
+
+		contratoRepositorio.gravar(contrato4);
 	}
 }

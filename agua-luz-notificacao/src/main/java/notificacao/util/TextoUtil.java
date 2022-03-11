@@ -50,8 +50,11 @@ public class TextoUtil {
 		String ano = data.substring(0, 4);
 		String mes = data.substring(4, 6);
 		String dia = data.substring(6, 8);
+		
+		String formatoBr = dia + "/" + mes + "/" + ano;
+		String formatoOutros = ano + "/" + mes + "/" + dia;
 
-		data = siglaPais.equals("BR") ? dia + "/" + mes + "/" + ano : ano + "/" + mes + "/" + dia;
+		data = siglaPais.equals("BR") ? formatoBr : formatoOutros;
 
 		conteudoNotificacao[2] = data;
 

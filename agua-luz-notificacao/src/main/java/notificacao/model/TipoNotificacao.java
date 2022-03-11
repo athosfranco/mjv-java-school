@@ -1,4 +1,4 @@
-package notificacao.output;
+package notificacao.model;
 
 public enum TipoNotificacao {
 
