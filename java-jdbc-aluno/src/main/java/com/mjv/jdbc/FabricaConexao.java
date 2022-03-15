@@ -3,7 +3,7 @@ package com.mjv.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class bancoConexao {
+public class FabricaConexao {
 	private static Connection conexao;
 	public static void abrirConexao() throws Exception {
 		if(conexao==null) {

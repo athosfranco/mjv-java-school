@@ -62,6 +62,10 @@ public class Pessoa {
 	public PreferenciaNotificacao getPreferencia() {
 		return preferencia;
 	}
+	
+	public String getPreferenciaStr() {
+		return preferencia.getPreferencia();
+	}
 
 	public void setPreferencia(PreferenciaNotificacao preferencia) {
 		this.preferencia = preferencia;
